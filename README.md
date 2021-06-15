@@ -8,3 +8,11 @@ Materual UI
 https://material-ui.com/
 axios
 https://www.npmjs.com/package/axios
+
+## Backend start
+cd file-upload-backend
+npm run server
+
+## Frontend start
+cd file-upload-frontend
+npm start

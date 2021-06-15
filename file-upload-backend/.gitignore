@@ -1,1 +1,8 @@
 node_modules/
+/.vscode
+public
+files
+logs
+app.yaml
+.env
+.eslintrc
