@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -14,8 +15,8 @@ const FirstPage = () => {
   };
   
   // On file upload (click the upload button)
-  const onFileUpload = (event) => {
-    event.preventDefault();
+  const onFileUpload = (e) => {
+    e.preventDefault();
     // Create an object of formData
     const formData = new FormData();
     // Update the formData object
@@ -25,13 +26,29 @@ const FirstPage = () => {
       selectedFile.name
     );
   
+    // eslint-disable-next-line no-console
+    console.log(...formData);
     // Details of the uploaded file
     // eslint-disable-next-line no-console
     console.log(selectedFile);
-  
+    
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    };
     // Request made to the backend api
     // Send formData object
-    axios.post('api/uploadfile', formData);
+    axios.post('http://localhost:5000/upload', formData, config)
+      .then((response) => {
+      // eslint-disable-next-line no-console
+      console.log(response);
+      // eslint-disable-next-line no-console
+      console.log('The file is successfully uploaded');
+      }).catch((error) => {
+        // eslint-disable-next-line no-alert
+        alert(error);
+      });
   };
   
   // File content to be displayed after
@@ -66,14 +83,16 @@ const FirstPage = () => {
       );
   };
   return (
-    <Grid container justify="center" item xs={12}>
-      <Typography variant="h3">
-        File Upload using React
-      </Typography>
+    <Grid container justify="center" item xs={12} spacing={2} style={{ margin: 'auto' }}>
+      <Grid container justify="center" item xs={12}>
+        <Typography variant="h3">
+          File Upload using React
+        </Typography>
+      </Grid>
       <Grid container justify="center" item xs={12}>
         <form onSubmit={onFileUpload}>
           <TextField type="file" name="file" onChange={onFileChange} />
-          <Button type="submit">
+          <Button variant="contained" type="submit">
             Upload
           </Button>
         </form>
