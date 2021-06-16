@@ -3,11 +3,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {
- Grid, Typography, Button, TextField 
+ Grid, Typography, Button, TextField, makeStyles 
 } from '@material-ui/core';
 
+const useStyles = makeStyles(() => ({
+  xMargin: {
+    margin: '1rem 0'
+  },
+  yMargin: {
+    margin: '0 1rem'
+  }
+}));
+
 const FirstPage = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState('');
   const [fileName, setFileName] = useState('');
   // On file select 
   const onFileChange = (event) => {
@@ -33,6 +42,8 @@ const FirstPage = () => {
       .then((response) => {
       // eslint-disable-next-line no-console
       console.log(response);
+      setSelectedFile('');
+      setFileName('');
       // eslint-disable-next-line no-console
       console.log('The file is successfully uploaded');
       }).catch((error) => {
@@ -51,7 +62,7 @@ const FirstPage = () => {
           <Typography>
             File Name:
             {' '}
-            {selectedFile.name}
+            {fileName !== '' ? fileName : selectedFile.name}
           </Typography>
           <Typography>
             File Type:
@@ -72,6 +83,9 @@ const FirstPage = () => {
         </Grid>
       );
   };
+
+  const classes = useStyles();
+
   return (
     <Grid container justify="center" item xs={12} spacing={2} style={{ margin: 'auto' }}>
       <Grid container justify="center" item xs={12}>
@@ -81,23 +95,28 @@ const FirstPage = () => {
       </Grid>
       <Grid container justify="center" direction="column" item xs={12}>
         <form onSubmit={onFileUpload}>
-          <Grid container justify="center" item xs={12}>
-            <Typography>File Name:</Typography>
-            <TextField
-              type="text"
-              name="fileName"
-              onChange={onFileNameChange}
-            />
-          </Grid>
-          <Grid container justify="center" item xs={12}>
+          <Grid container justify="center" item xs={12} className={classes.xMargin}>
             <TextField
               type="file"
               name="file"
+              // value={selectedFile}
+              variant="outlined"
               onChange={onFileChange}
             />
           </Grid>
-          <Grid container justify="center" item xs={12}>
-            <Button variant="contained" type="submit">
+          <Grid container justify="center" item xs={12} className={classes.xMargin}>
+            <TextField
+              type="text"
+              label="File Name" 
+              variant="outlined"
+              className={classes.yMargin}
+              name="fileName"
+              value={fileName}
+              onChange={onFileNameChange}
+            />
+            {/* </Grid>
+          <Grid container justify="center" item xs={12}> */}
+            <Button variant="contained" type="submit" className={classes.yMargin}>
               Upload
             </Button>
           </Grid>

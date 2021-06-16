@@ -6,7 +6,7 @@ import './footer.css';
 
 const Footer = () => (
   <Grid className="footer">
-    <Typography>This is some content in sticky footer</Typography>
+    <Typography style={{ textAlign: 'center' }}>Dramatized by @Tchu Tchu</Typography>
   </Grid>
 );
 

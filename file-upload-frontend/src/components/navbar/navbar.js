@@ -49,7 +49,7 @@ const Navbar = () => {
               onChange={handleClickTab}
               className={classes.tabMargin}
             >
-              <Tab label="Page 1" disableRipple to="/" component={Link} />
+              <Tab label="File Upload" disableRipple to="/" component={Link} />
               <Tab label="Page 2" disableRipple to="/second" component={Link} />
               <Tab label="Page 3" disableRipple to="/third" component={Link} />
             </Tabs>
