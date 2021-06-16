@@ -15,27 +15,24 @@ const File = mongoose.model('file');
 const router = express.Router();
 
 const filename = (req, file, cb) => {
-  // eslint-disable-next-line no-console
-  console.log(file);
-  cb(null, `IMAGE-${Date.now()}${path.extname(file.originalname)}`);
+  const { name } = req.body;
+  cb(null, `${name}-${Date.now()}${path.extname(file.originalname)}`);
 };
 
 const storage = multer.diskStorage({
-  destination: './public/',
+  destination: './public/uploads',
   filename,
 });
 
 const upload = multer({
   storage,
   limits: { fileSize: 1000000 },
-}).single('myfile');
+}).single('myFile');
 
 const obj = (req, res) => {
   upload(req, res, () => {
-    // eslint-disable-next-line no-console
-    console.log('Request ---', req.body); // [Object: null prototype] {}
-    // eslint-disable-next-line no-console
-    console.log('Request file ---', req.file); // undefined
+    // console.log('Request ---', req.body);
+    // console.log('Request file ---', req.file);
     const file = new File();
     file.meta_data = req.file;
     file.save().then(() => {
