@@ -8,38 +8,28 @@ import {
 
 const FirstPage = () => {
   const [selectedFile, setSelectedFile] = useState(null);
-  // On file select (from the pop up)
+  const [fileName, setFileName] = useState('');
+  // On file select 
   const onFileChange = (event) => {
-    // Update the state
-    setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    setSelectedFile(file);
   };
-  
+  const onFileNameChange = (event) => {
+    const { value } = event.target;
+    setFileName(value);
+  };
   // On file upload (click the upload button)
   const onFileUpload = (e) => {
     e.preventDefault();
     // Create an object of formData
-    const formData = new FormData();
-    // Update the formData object
-    formData.append(
-      'myFile',
-      selectedFile,
-      selectedFile.name
-    );
+    const data = new FormData();
+    // Update the data object
+    data.append('name', fileName);
+    data.append('myFile', selectedFile);
   
-    // eslint-disable-next-line no-console
-    console.log(...formData);
-    // Details of the uploaded file
-    // eslint-disable-next-line no-console
-    console.log(selectedFile);
-    
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data'
-      }
-    };
     // Request made to the backend api
-    // Send formData object
-    axios.post('http://localhost:5000/upload', formData, config)
+    // Send data object
+    axios.post('http://localhost:5000/upload', data)
       .then((response) => {
       // eslint-disable-next-line no-console
       console.log(response);
@@ -85,23 +75,39 @@ const FirstPage = () => {
   return (
     <Grid container justify="center" item xs={12} spacing={2} style={{ margin: 'auto' }}>
       <Grid container justify="center" item xs={12}>
-        <Typography variant="h3">
+        <Typography variant="h3" style={{ textAlign: 'center' }}>
           File Upload using React
         </Typography>
       </Grid>
-      <Grid container justify="center" item xs={12}>
+      <Grid container justify="center" direction="column" item xs={12}>
         <form onSubmit={onFileUpload}>
-          <TextField type="file" name="file" onChange={onFileChange} />
-          <Button variant="contained" type="submit">
-            Upload
-          </Button>
+          <Grid container justify="center" item xs={12}>
+            <Typography>File Name:</Typography>
+            <TextField
+              type="text"
+              name="fileName"
+              onChange={onFileNameChange}
+            />
+          </Grid>
+          <Grid container justify="center" item xs={12}>
+            <TextField
+              type="file"
+              name="file"
+              onChange={onFileChange}
+            />
+          </Grid>
+          <Grid container justify="center" item xs={12}>
+            <Button variant="contained" type="submit">
+              Upload
+            </Button>
+          </Grid>
         </form>
       </Grid>
       <Grid container justify="center" item xs={12}>
         {fileData()}
       </Grid>
     </Grid>
-); 
+  ); 
 };
 
 export default FirstPage;
