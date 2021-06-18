@@ -90,7 +90,7 @@ const FirstPage = () => {
     <Grid container justify="center" item xs={12} spacing={2} style={{ margin: 'auto' }}>
       <Grid container justify="center" item xs={12}>
         <Typography variant="h3" style={{ textAlign: 'center' }}>
-          File Upload using React
+          Upload locally
         </Typography>
       </Grid>
       <Grid container justify="center" direction="column" item xs={12}>

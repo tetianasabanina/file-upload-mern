@@ -5,7 +5,7 @@ import { Grid, Typography } from '@material-ui/core';
 import './footer.css';
 
 const Footer = () => (
-  <Grid className="footer">
+  <Grid item xs className="footer">
     <Typography style={{ textAlign: 'center' }}>Dramatized by @Tchu Tchu</Typography>
   </Grid>
 );

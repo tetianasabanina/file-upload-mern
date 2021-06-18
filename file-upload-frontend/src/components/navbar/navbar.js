@@ -35,7 +35,7 @@ const Navbar = () => {
   const classes = useStyles();
 
   return (
-    <Grid container style={{ marginTop: '68px' }}>
+    <Grid container item>
       <AppBar color="primary">
         <Toolbar>
           <Typography style={{ color: '#FFF' }}>Logo</Typography>
@@ -49,8 +49,8 @@ const Navbar = () => {
               onChange={handleClickTab}
               className={classes.tabMargin}
             >
-              <Tab label="File Upload" disableRipple to="/" component={Link} />
-              <Tab label="Page 2" disableRipple to="/second" component={Link} />
+              <Tab label="Local" disableRipple to="/" component={Link} />
+              <Tab label="Cloud" disableRipple to="/second" component={Link} />
               <Tab label="Page 3" disableRipple to="/third" component={Link} />
             </Tabs>
           )}
