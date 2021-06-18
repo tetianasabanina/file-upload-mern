@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const FirstPage = () => {
+const LocalUpload = () => {
   const [selectedFile, setSelectedFile] = useState('');
   const [fileName, setFileName] = useState('');
   // On file select 
@@ -129,4 +129,4 @@ const FirstPage = () => {
   ); 
 };
 
-export default FirstPage;
+export default LocalUpload;
