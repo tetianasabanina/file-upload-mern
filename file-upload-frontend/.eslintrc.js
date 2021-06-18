@@ -25,5 +25,6 @@ module.exports = {
     indent: 'off',
     'no-trailing-spaces': 'off',
     'linebreak-style': 0,
+    'react/prop-types': 'off'
   },
 };
