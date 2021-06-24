@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
 
 const UploadFile = ({
  selectedFile, fileName, onFileUpload, onFileChange, onFileNameChange, 
- success, fail, title, resetInput, inputKey
+ success, fail, title, resetInput, inputKey, maxSize
  }) => {
   // File content to be displayed after
   // file upload is complete
@@ -43,6 +43,9 @@ const UploadFile = ({
             File Type:
             {' '}
             {selectedFile.type}
+          </Typography>
+          <Typography>
+            {`File Size: ${Math.round((selectedFile.size / 1024) * 10) / 10} KB`}
           </Typography>
           <Typography>
             Last Modified:
@@ -66,6 +69,11 @@ const UploadFile = ({
       <Grid container justify="center" item xs={12}>
         <Typography variant="h3" style={{ textAlign: 'center' }}>
           {title}
+        </Typography>
+      </Grid>
+      <Grid container justify="center" item xs={12}>
+        <Typography variant="h6" style={{ textAlign: 'center' }}>
+          {`Max file size ${maxSize / maxSize} MB`}
         </Typography>
       </Grid>
       <Grid container justify="center" direction="column" item xs={12}>

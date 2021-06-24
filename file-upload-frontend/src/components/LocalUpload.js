@@ -10,13 +10,21 @@ const LocalUpload = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [failMessage, setFailMessage] = useState('');
   const [inputKey, setInputKey] = useState(Date.now());
+  // Set max file size to 1 MB
+  const maxFileSize = 1048576;
   // On file select 
   const onFileChange = (event) => {
     const file = event.target.files[0];
-    setSelectedFile(file);
-    setFileName('');
-    setSuccessMessage('');
-    setFailMessage('');
+    if (file.size > maxFileSize) {
+      setFileName('');
+      setSuccessMessage('');
+      setFailMessage('File size is more than 1 MB');
+    } else {
+      setSelectedFile(file);
+      setFileName('');
+      setSuccessMessage('');
+      setFailMessage('');
+    }
   };
   const onFileNameChange = (event) => {
     const { value } = event.target;
@@ -25,6 +33,8 @@ const LocalUpload = () => {
   const clearSelection = () => {
     setInputKey(Date.now());
     setSelectedFile('');
+    setSuccessMessage('');
+    setFailMessage('');
   };
   // On file upload (click the upload button)
   const onFileUpload = async (e) => {
@@ -70,6 +80,7 @@ const LocalUpload = () => {
       fail={failMessage}
       resetInput={clearSelection}
       inputKey={inputKey}
+      maxSize={maxFileSize}
     />
   );
 };
