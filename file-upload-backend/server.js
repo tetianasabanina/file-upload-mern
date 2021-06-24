@@ -31,12 +31,15 @@ const upload = multer({
 
 const obj = (req, res) => {
   upload(req, res, () => {
-    // console.log('Request ---', req.body);
-    // console.log('Request file ---', req.file);
+    console.log('Request ---', req.body);
+    console.log('Request file ---', req.file);
     const file = new File();
     file.meta_data = req.file;
     file.save().then(() => {
-      res.send({ message: 'uploaded successfully' });
+      res.send({
+        message: 'uploaded successfully',
+        file: req.file,
+      });
     });
     /* Now do what ever you want to do */
   });
@@ -51,7 +54,7 @@ router.post('/upload', obj);
 
 app.use(router);
 
-app.use(express.static(path.join(__dirname, './public/')));
+app.use('/public/uploads', express.static(path.join(__dirname, './public/uploads')));
 
 app.get('/', (req, res) => res.send('<p>hello!</p>'));
 
