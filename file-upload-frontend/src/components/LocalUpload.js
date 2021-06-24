@@ -10,6 +10,7 @@ const LocalUpload = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [failMessage, setFailMessage] = useState('');
   const [inputKey, setInputKey] = useState(Date.now());
+  const [path, setPath] = useState('');
   // Set max file size to 1 MB
   const maxFileSize = 1048576;
   // On file select 
@@ -24,6 +25,7 @@ const LocalUpload = () => {
       setFileName('');
       setSuccessMessage('');
       setFailMessage('');
+      setPath('');
     }
   };
   const onFileNameChange = (event) => {
@@ -52,7 +54,9 @@ const LocalUpload = () => {
         // eslint-disable-next-line no-console
         console.log(response);
         if (response.status === 200) {
+          const newPath = `http://localhost:5000/public/uploads/${response.data.file.filename}`;
           setInputKey(Date.now());
+          setPath(newPath);
           setSelectedFile('');
           setFileName('');
           setSuccessMessage('The file is successfully uploaded');
@@ -61,6 +65,7 @@ const LocalUpload = () => {
       } catch (error) {
         setSuccessMessage('');
         setFailMessage('Error: file apploading failed');
+        setPath('');
       }
     } else {
       setSuccessMessage('');
@@ -81,6 +86,7 @@ const LocalUpload = () => {
       resetInput={clearSelection}
       inputKey={inputKey}
       maxSize={maxFileSize}
+      path={path}
     />
   );
 };

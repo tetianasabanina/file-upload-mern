@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
 
 const UploadFile = ({
  selectedFile, fileName, onFileUpload, onFileChange, onFileNameChange, 
- success, fail, title, resetInput, inputKey, maxSize
+ success, fail, title, resetInput, inputKey, maxSize, path
  }) => {
   // File content to be displayed after
   // file upload is complete
@@ -124,7 +124,8 @@ const UploadFile = ({
       </Grid>
       <Grid container justify="center" item xs={12}>
         <Paper className={classes.bMargin}>
-          <img src=".\logo512.png" alt="uploaded file" className={classes.image} />
+          {path !== ''
+          && <img src={path} alt="uploaded file" className={classes.image} />}
         </Paper>
       </Grid>
     </Grid>
