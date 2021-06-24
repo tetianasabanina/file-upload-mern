@@ -49,10 +49,13 @@ const LocalUpload = () => {
           setFailMessage('');
         }
       } catch (error) {
-        setFailMessage('Error: file apploading failed');
         setSuccessMessage('');
+        setFailMessage('Error: file apploading failed');
       }
-    } else setFailMessage('Error: No File Selected');
+    } else {
+      setSuccessMessage('');
+      setFailMessage('Error: No File Selected');
+    }
   };
 
   return (

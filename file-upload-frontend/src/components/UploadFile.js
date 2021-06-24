@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/button-has-type */
-import React, { useState } from 'react';
+import React from 'react';
 import {
  Grid, Typography, Button, TextField, makeStyles, 
- InputAdornment, IconButton
+ InputAdornment, IconButton, Paper
 } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
@@ -13,6 +13,13 @@ const useStyles = makeStyles(() => ({
   },
   yMargin: {
     margin: '0 1rem'
+  },
+  bMargin: {
+    marginBottom: 'calc(64px + 1rem)'
+  },
+  image: {
+    maxWidth: '100%',
+    height: 'auto'
   }
 }));
 
@@ -46,8 +53,8 @@ const UploadFile = ({
       );
     } 
       return (
-        <Grid>
-          <Typography>Choose File before Pressing the Upload button</Typography>
+        <Grid item xs={12}>
+          <Typography style={{ textAlign: 'center' }}>Choose File before Pressing the Upload button</Typography>
         </Grid>
       );
   };
@@ -62,12 +69,7 @@ const UploadFile = ({
         </Typography>
       </Grid>
       <Grid container justify="center" direction="column" item xs={12}>
-        <Typography color="primary" style={{ textAlign: 'center' }}>
-          {success}
-        </Typography>
-        <Typography color="error" style={{ textAlign: 'center' }}>
-          {fail}
-        </Typography>
+        
         <form onSubmit={onFileUpload}>
           <Grid container justify="center" item xs={12} className={classes.xMargin}>
             <TextField
@@ -105,6 +107,17 @@ const UploadFile = ({
       </Grid>
       <Grid container justify="center" item xs={12}>
         {fileData()}
+        <Typography color="primary" style={{ textAlign: 'center' }}>
+          {success}
+        </Typography>
+        <Typography color="error" style={{ textAlign: 'center' }}>
+          {fail}
+        </Typography>
+      </Grid>
+      <Grid container justify="center" item xs={12}>
+        <Paper className={classes.bMargin}>
+          <img src=".\logo512.png" alt="uploaded file" className={classes.image} />
+        </Paper>
       </Grid>
     </Grid>
   ); 
