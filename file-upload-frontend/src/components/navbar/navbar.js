@@ -34,6 +34,10 @@ const Navbar = () => {
 
   const classes = useStyles();
 
+  const firstLink = 'Local';
+  const secondLink = 'Cloud';
+  const thirdLink = 'Coming soon';
+
   return (
     <Grid container item>
       <AppBar color="primary">
@@ -41,7 +45,11 @@ const Navbar = () => {
           <Typography style={{ color: '#FFF' }}>Logo</Typography>
 
           {isMatch ? (
-            <DrawerComponent />
+            <DrawerComponent
+              firstLink={firstLink}
+              secondLink={secondLink}
+              thirdLink={thirdLink}
+            />
           ) : (
             <Tabs
               indicatorColor="secondary"
@@ -49,9 +57,9 @@ const Navbar = () => {
               onChange={handleClickTab}
               className={classes.tabMargin}
             >
-              <Tab label="Local" disableRipple to="/" component={Link} />
-              <Tab label="Cloud" disableRipple to="/second" component={Link} />
-              <Tab label="Page 3" disableRipple to="/third" component={Link} />
+              <Tab label={firstLink} disableRipple to="/" component={Link} />
+              <Tab label={secondLink} disableRipple to="/second" component={Link} />
+              <Tab label={thirdLink} disableRipple to="/third" component={Link} />
             </Tabs>
           )}
         </Toolbar>

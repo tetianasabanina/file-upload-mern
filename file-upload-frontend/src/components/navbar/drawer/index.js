@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const DrawerComponent = () => {
+const DrawerComponent = ({ firstLink, secondLink, thirdLink }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const classes = useStyles();
@@ -32,27 +32,17 @@ const DrawerComponent = () => {
         <List>
           <ListItem button divider>
             <ListItemIcon>
-              <ListItemText>Link 1</ListItemText>
+              <ListItemText>{firstLink}</ListItemText>
             </ListItemIcon>
           </ListItem>
           <ListItem button divider>
             <ListItemIcon>
-              <ListItemText>Link 2</ListItemText>
+              <ListItemText>{secondLink}</ListItemText>
             </ListItemIcon>
           </ListItem>
           <ListItem button divider>
             <ListItemIcon>
-              <ListItemText>Link 3</ListItemText>
-            </ListItemIcon>
-          </ListItem>
-          <ListItem button divider>
-            <ListItemIcon>
-              <ListItemText>Link 4</ListItemText>
-            </ListItemIcon>
-          </ListItem>
-          <ListItem button divider>
-            <ListItemIcon>
-              <ListItemText>Link 5</ListItemText>
+              <ListItemText>{thirdLink}</ListItemText>
             </ListItemIcon>
           </ListItem>
         </List>
