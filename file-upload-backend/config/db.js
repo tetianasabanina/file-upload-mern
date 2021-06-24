@@ -10,9 +10,10 @@ const connectDB = async () => {
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
-
+    // eslint-disable-next-line no-console
     console.log('MongoDB connected...');
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(err.message);
     // Exit process wíth failure
     process.exit(1);
