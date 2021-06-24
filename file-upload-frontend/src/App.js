@@ -1,5 +1,7 @@
 import React from 'react';
-import { Grid, ThemeProvider } from '@material-ui/core/';
+import {
+ Grid, ThemeProvider, Toolbar 
+} from '@material-ui/core/';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -15,16 +17,16 @@ function App() {
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <Grid container direction="column" alignItems="center" justify="space-between" className="wrapper">
-          <Grid container item>
-            <Navbar />
-          </Grid>
-          <Grid container item style={{ flexGrow: 1 }}>
+        <Grid container direction="column" justify="center" className="root">
+          <Navbar />
+          <Toolbar />
+          <Grid item xs={12}>
             <Route path="/" exact component={LocalUpload} />
             <Route path="/second" exact component={CloudUpload} />
             <Route path="/third" exact component={ThirdPage} />
+         
+            <Footer />
           </Grid>
-          <Footer />
         </Grid>
       </ThemeProvider>
     </Router>
