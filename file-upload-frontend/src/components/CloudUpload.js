@@ -3,7 +3,7 @@ import { Grid, Typography } from '@material-ui/core';
 
 const CloudUpload = () => (
   <Grid container item xs={12} justify="center">
-    <Typography>You are on the 2nd component!</Typography>
+    <Typography variant="h3">Cloud upload is under construction</Typography>
   </Grid>
 );
 
